@@ -2,6 +2,7 @@ import { useState } from "react";
 import { generateMnemonic } from "@scure/bip39";
 import { wordlist } from "@scure/bip39/wordlists/english";
 import "./App.css";
+import SolanaWallet from "./components/SolanaWallet";
 
 function App() {
   const [mnemonic, setMnemonic] = useState("");
@@ -20,7 +21,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="container">
       <button
         onClick={function () {
           const mn = generateMnemonic(wordlist);
@@ -32,6 +33,7 @@ function App() {
       </button>
 
       <div className="word-container"> {splitMnemonic()} </div>
+      {mnemonic && <SolanaWallet mnemonic={mnemonic} />}
     </div>
   );
 }
